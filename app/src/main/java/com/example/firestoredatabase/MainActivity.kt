@@ -1,5 +1,6 @@
 package com.example.firestoredatabase
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -76,12 +77,32 @@ class MainActivity : AppCompatActivity(),DataAdapter.ItemClickListener {
             val updateDescription = binding.descriptionET.text.toString()
 
             if (updateTitle.isNotEmpty() && updateDescription.isNotEmpty()){
-                val updateData = Data(data.id!!, updateTitle,updateDescription)
+                val updateData = Data(data.id, updateTitle,updateDescription)
+
+                dataCollection.document(data.id!!).set(updateData)
+                    .addOnSuccessListener {
+                        binding.titleET.text?.clear()
+                        binding.descriptionET.text?.clear()
+                        Toast.makeText(this,"Data Updated",Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this,MainActivity::class.java))
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(this,"Data Updated Failed",Toast.LENGTH_SHORT).show()
+                    }
             }
         }
     }
 
     override fun onDeleteItemClick(data: Data) {
-        TODO("Not yet implemented")
+        dataCollection.document(data.id!!).delete()
+            .addOnSuccessListener {
+                adapter.notifyDataSetChanged()
+                fetchData()
+                Toast.makeText(this,"Data Deleted",Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this,"Data Deletion Failed!",Toast.LENGTH_SHORT).show()
+            }
+
     }
 }

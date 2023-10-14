@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#C1DEF4"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="370dp"
         android:layout_height="0dp"
         android:layout_margin="30dp"
         android:layout_weight="0.35"
-        app:cardCornerRadius="15dp"
         app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="15dp"
         app:cardElevation="10dp">
 
         <LinearLayout
@@ -28,6 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Title"
+                android:textColorHint="#0E1A5A"
                 app:endIconMode="clear_text"
                 app:hintTextColor="@color/black">
 
@@ -47,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="Enter Description"
+                android:textColorHint="#0E1A5A"
                 app:endIconMode="clear_text"
                 app:hintTextColor="@color/black">
 
@@ -84,7 +87,7 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="370dp"
         android:layout_height="0dp"
         android:layout_margin="30dp"
         android:layout_weight="0.60"
@@ -102,8 +105,8 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/list_item"
-                android:layout_margin="15dp">
+                android:layout_margin="15dp"
+                tools:listitem="@layout/list_item">
 
             </androidx.recyclerview.widget.RecyclerView>
 
